@@ -1,11 +1,13 @@
 require 'mongo'
 require 'fish0/version'
-require 'fish0/record_not_found'
+require 'fish0/exceptions'
 require 'fish0/repository'
 require 'fish0/paginator'
 require 'fish0/concerns/cacheable'
 require 'fish0/concerns/paginatable'
 require 'fish0/concerns/view_model'
+require 'fish0/concerns/base'
+require 'fish0/model'
 
 module Fish0
   class << self

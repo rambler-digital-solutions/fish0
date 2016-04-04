@@ -38,8 +38,9 @@ module Fish0
       to_entity.call(element) if element
     end
 
-    def first!
-      first || raise(RecordNotFound, "can't find in #{collection} with #{conditions}")
+    def last
+      element = all.last
+      to_entity.call(element) if element
     end
 
     def where(query)
@@ -65,12 +66,6 @@ module Fish0
     def skip(value)
       @skip_quantity = value
       self
-    end
-
-    def follow_after(item)
-      raise ArgumentError unless item.respond_to?(:published_at)
-
-      order_by(published_at: -1).where(published_at: { '$lt': item.published_at })
     end
 
     protected
