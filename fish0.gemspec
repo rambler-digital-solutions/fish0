@@ -23,4 +23,5 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'virtus', '~> 1.0'
 
   s.add_development_dependency 'rubocop', '~> 0.35'
+  s.add_development_dependency 'rspec', '~> 3.4'
 end
