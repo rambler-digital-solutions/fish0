@@ -1,8 +1,16 @@
 # Fish0
 
-The fish doesn't think because the fish knows everything.
+> The fish doesn't think because the fish knows everything.
 
-Fish0 is the plugin for read-only content websites with MongoDB storage. Works perfect with Rambler&Co CQRS projects
+Fish0 is the plugin for read-only content websites with MongoDB storage. Works perfect with Rambler&Co CQRS architecture.
+
+## Installation
+
+Simply add gem to your `Gemfile`
+
+````
+gem 'fish0'
+````
 
 ## Configuration
 
