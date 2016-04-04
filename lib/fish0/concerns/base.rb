@@ -13,6 +13,15 @@ module Fish0
           delegate :order_by, to: :repository
           delegate :limit, to: :repository
           delegate :skip, to: :repository
+          delegate :projection, to: :repository
+
+          def first!
+            first || raise(RecordNotFound, "can't find in #{collection} with #{conditions}")
+          end
+
+          def last!
+            last || raise(RecordNotFound, "can't find in #{collection} with #{conditions}")
+          end
 
           private
 
