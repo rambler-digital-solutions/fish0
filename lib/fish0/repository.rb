@@ -76,12 +76,6 @@ module Fish0
       self
     end
 
-    def follow_after(item)
-      raise ArgumentError unless item.respond_to?(:published_at)
-
-      order_by(published_at: -1).where(published_at: { '$lt': item.published_at })
-    end
-
     protected
 
     def fetch
