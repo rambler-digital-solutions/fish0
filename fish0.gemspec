@@ -1,4 +1,4 @@
-$:.push File.expand_path('../lib', __FILE__)
+$LOAD_PATH.push File.expand_path('../lib', __FILE__)
 
 # Maintain your gem's version:
 require 'fish0/version'
@@ -11,8 +11,10 @@ Gem::Specification.new do |s|
   s.email       = ['d.zuev@rambler-co.ru']
   s.homepage    = 'https://github.com/rambler-digital-solutions/fish0'
   s.summary     = 'Plugin for read-only content websites'
-  s.description = 'Plugin for read-only content websites with MongoDB storage. Works perfect with Rambler&Co CQRS projects'
+  s.description = 'Plugin for read-only content websites with MongoDB storage.
+                   Works perfect with Rambler&Co CQRS projects'
   s.license     = 'MIT'
+  s.required_ruby_version = '~> 2.0'
 
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
 

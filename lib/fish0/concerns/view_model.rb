@@ -12,7 +12,7 @@ module Fish0
         end
 
         def to_partial_path
-          "#{type}"
+          type.to_s
         end
       end
     end

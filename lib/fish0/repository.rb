@@ -14,7 +14,7 @@ module Fish0
     delegate :each, to: :all
 
     def initialize(collection, entity_class = nil)
-      fail ArgumentError, "you should provide collection name" unless collection
+      raise ArgumentError, 'you should provide collection name' unless collection
       @collection = collection
       @source = Fish0.mongo_reader[collection]
       @conditions = {}
@@ -39,11 +39,11 @@ module Fish0
     end
 
     def first!
-      first || fail(RecordNotFound, "can't find in #{collection} with #{conditions}")
+      first || raise(RecordNotFound, "can't find in #{collection} with #{conditions}")
     end
 
     def where(query)
-      self.conditions.merge!(query)
+      conditions.merge!(query)
       self
     end
 
@@ -68,7 +68,7 @@ module Fish0
     end
 
     def follow_after(item)
-      fail ArgumentError unless item.respond_to?(:published_at)
+      raise ArgumentError unless item.respond_to?(:published_at)
 
       order_by(published_at: -1).where(published_at: { '$lt': item.published_at })
     end

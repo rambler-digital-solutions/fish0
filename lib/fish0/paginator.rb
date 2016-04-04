@@ -6,7 +6,7 @@ module Fish0
     attr_reader :collection
 
     def initialize(collection, page_number: 1, per_page: 22, padding: 0)
-      @collection = collection || (fail ArgumentError)
+      @collection = collection || (raise ArgumentError)
       @per = per_page
       @page = page_number - 1
       @padding = padding

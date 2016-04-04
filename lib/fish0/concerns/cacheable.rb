@@ -8,13 +8,11 @@ module Fish0
           case
           when timestamp_names.any?
             timestamp = max_updated_column_timestamp(timestamp_names)
-            timestamp = timestamp.utc.to_s(:nsec)
-            "#{self.class.to_s.tableize}/#{slug}-#{timestamp}"
+            "#{self.class.to_s.tableize}/#{slug || id}-#{timestamp.utc.to_s(:nsec)}"
           when timestamp = max_updated_column_timestamp
-            timestamp = timestamp.utc.to_s(:nsec)
-            "#{self.class.to_s.tableize}/#{slug}-#{timestamp}"
+            "#{self.class.to_s.tableize}/#{slug || id}-#{timestamp.utc.to_s(:nsec)}"
           else
-            "#{self.class.to_s.tableize}/#{slug}"
+            "#{self.class.to_s.tableize}/#{slug || id}"
           end
         end
 
