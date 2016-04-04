@@ -42,6 +42,15 @@ module Fish0
       first || raise(RecordNotFound, "can't find in #{collection} with #{conditions}")
     end
 
+    def last
+      element = all.last
+      to_entity.call(element) if element
+    end
+
+    def last!
+      last || raise(RecordNotFound, "can't find in #{collection} with #{conditions}")
+    end
+
     def where(query)
       conditions.merge!(query)
       self
