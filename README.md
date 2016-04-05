@@ -30,6 +30,37 @@ production:
     :database: project_production
 ```
 
+## Models
+
+Inherit your model class from `Fish0::Model` and feel the power of the Fish!
+
+With `attribute` define your attributes and with `primary_key` set your main primary key, e.g. `id`, `slug`, etc.
+```ruby
+# app/models/article.rb
+class Article < Fish0::Model
+  # Define some attributes
+  attribute :headline, String
+  attribute :slug, String
+  attribute :content, Array[Hash]
+  attribute :published_at, DateTime
+
+  primary_key :slug
+
+  # ...
+end
+
+# app/controllers/articles_controller.rb
+class ArticlesController < ApplicationController
+  # ...
+
+  def show
+    @article = Article.where(slug: params[:slug]).first
+  end
+
+  # ...
+end
+```
+
 ## Repository
 
 ### Basic repository usage
