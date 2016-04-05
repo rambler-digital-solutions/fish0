@@ -1,4 +1,5 @@
 require 'mongo'
+require 'virtus'
 require 'fish0/version'
 require 'fish0/engine'
 require 'fish0/exceptions'
