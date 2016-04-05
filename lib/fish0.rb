@@ -1,5 +1,6 @@
 require 'mongo'
 require 'fish0/version'
+require 'fish0/engine'
 require 'fish0/exceptions'
 require 'fish0/repository'
 require 'fish0/paginator'
