@@ -3,8 +3,16 @@ module Fish0
     module Base
       extend ActiveSupport::Concern
 
+      cattr_accessor :primary_key, instance_writer: false
+
       included do
         class << self
+          def primary_key(val = @primary_key)
+            @primary_key = val
+            return default_primary_key unless @primary_key
+            @primary_key
+          end
+
           delegate :all, to: :repository
           delegate :where, to: :repository
           delegate :first, to: :repository
@@ -25,12 +33,20 @@ module Fish0
 
           private
 
+          def default_primary_key
+            :slug
+          end
+
+          def entity
+            self
+          end
+
           def collection
-            name.tableize
+            model_name.collection
           end
 
           def repository
-            Fish0::Repository.new(collection)
+            Fish0::Repository.new(collection, entity)
           end
         end
       end

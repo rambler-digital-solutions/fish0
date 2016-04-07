@@ -6,6 +6,7 @@ AllCops:
     - 'vendor/**/*'
     - 'tmp/**/*'
     - 'test/test_helper.rb'
+    - 'spec/dummy/**/*'
     - 'spec/spec_helper.rb'
     - 'spec/rails_helper.rb'
 

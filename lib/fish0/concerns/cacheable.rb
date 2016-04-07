@@ -8,15 +8,19 @@ module Fish0
           case
           when timestamp_names.any?
             timestamp = max_updated_column_timestamp(timestamp_names)
-            "#{self.class.to_s.tableize}/#{slug || id}-#{timestamp.utc.to_s(:nsec)}"
+            "#{self.class.to_s.tableize}/#{primary_key_value}-#{timestamp.utc.to_s(:nsec)}"
           when timestamp = max_updated_column_timestamp
-            "#{self.class.to_s.tableize}/#{slug || id}-#{timestamp.utc.to_s(:nsec)}"
+            "#{self.class.to_s.tableize}/#{primary_key_value}-#{timestamp.utc.to_s(:nsec)}"
           else
-            "#{self.class.to_s.tableize}/#{slug || id}"
+            "#{self.class.to_s.tableize}/#{primary_key_value}"
           end
         end
 
         private
+
+        def primary_key_value
+          send(primary_key)
+        end
 
         def timestamp_attributes_for_update
           [:updated_at]
