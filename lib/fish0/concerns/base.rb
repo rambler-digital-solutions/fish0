@@ -7,9 +7,10 @@ module Fish0
 
       included do
         class << self
-          def primary_key(val = @@primary_key)
-            @@primary_key = val
-            @@primary_key
+          def primary_key(val = @primary_key)
+            @primary_key = val
+            return default_primary_key unless @primary_key
+            @primary_key
           end
 
           delegate :all, to: :repository
@@ -31,6 +32,10 @@ module Fish0
           end
 
           private
+
+          def default_primary_key
+            :slug
+          end
 
           def entity
             self

@@ -1,0 +1,12 @@
+development:
+  hosts:
+    - 'localhost:27017'
+  params:
+    :database: fish0_development
+
+
+test:
+  hosts:
+    - 'localhost:27017'
+  params:
+    :database: fish0_test
