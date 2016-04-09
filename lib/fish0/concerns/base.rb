@@ -5,12 +5,24 @@ module Fish0
 
       cattr_accessor :primary_key, instance_writer: false
 
+      def primary_key
+        self.class.primary_key
+      end
+
+      def primary_key_value
+        send(primary_key)
+      end
+
       included do
         class << self
-          def primary_key(val = @primary_key)
-            @primary_key = val
-            return default_primary_key unless @primary_key
-            @primary_key
+          def primary_key(val = @@primary_key)
+            @@primary_key = val
+            return default_primary_key unless @@primary_key
+            @@primary_key
+          end
+
+          def cacheable
+            include Concerns::Cacheable
           end
 
           delegate :all, to: :repository
