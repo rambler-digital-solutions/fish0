@@ -35,6 +35,7 @@ production:
 Inherit your model class from `Fish0::Model` and feel the power of the Fish!
 
 With `attribute` define your attributes and with `primary_key` set your main primary key, e.g. `id`, `slug`, etc.
+
 ```ruby
 # app/models/article.rb
 class Article < Fish0::Model
@@ -94,7 +95,7 @@ class ArticlesController < ApplicationController
   # ...
 
   def show
-    @article = ArticleRepository.new.where(slug: params[:slug]).first!
+    @article = Article.where(slug: params[:slug]).published.first!
   end
 
   # ...
@@ -109,7 +110,7 @@ class ArticlesController < ApplicationController
   include Fish0::Concerns::Paginatable
 
   def index
-    @articles = paginate(ArticleRepository.new.published)
+    @articles = paginate(Article.published)
   end
 
   # ...
@@ -153,7 +154,7 @@ Your model should respond to `:updated_at` with DateTime object.
 # app/models/article.rb
 class Article
   # ...
-  include Fish0::Concerns::Cacheable
+  cacheable
 
   # ...
 end
@@ -163,7 +164,7 @@ class ArticlesController < ApplicationController
   # ...
 
   def show
-    @article = ArticleRepository.new.where(slug: params[:slug]).first!
+    @article = Article.where(slug: params[:slug]).first!
     if stale?(@article)
       respond_to do |format|
         format.html

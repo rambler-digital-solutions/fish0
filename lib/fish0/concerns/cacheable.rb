@@ -18,10 +18,6 @@ module Fish0
 
         private
 
-        def primary_key_value
-          send(primary_key)
-        end
-
         def timestamp_attributes_for_update
           [:updated_at]
         end
