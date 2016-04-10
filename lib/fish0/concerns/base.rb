@@ -3,8 +3,6 @@ module Fish0
     module Base
       extend ActiveSupport::Concern
 
-      # cattr_accessor :primary_key, instance_writer: false
-
       def primary_key
         self.class.primary_key
       end
@@ -25,25 +23,19 @@ module Fish0
             include Concerns::Cacheable
           end
 
-          delegate :all, to: :repository
-          delegate :where, to: :repository
-          delegate :first, to: :repository
-          delegate :last, to: :repository
-          delegate :search, to: :repository
-          delegate :order_by, to: :repository
-          delegate :limit, to: :repository
-          delegate :skip, to: :repository
-          delegate :projection, to: :repository
-
-          def first!
-            first || raise(RecordNotFound, "can't find in #{collection} with #{conditions}")
+          def method_missing(method_name, *arguments, &block)
+            if repository.respond_to?(method_name)
+              repository.send(method_name, *arguments, &block)
+            else
+              super
+            end
           end
 
-          def last!
-            last || raise(RecordNotFound, "can't find in #{collection} with #{conditions}")
+          def respond_to_missing?(method_name, include_private = false)
+            repository.respond_to?(method_name) || super
           end
 
-          private
+          protected
 
           def default_primary_key
             :slug
@@ -58,6 +50,9 @@ module Fish0
           end
 
           def repository
+            if "#{entity.to_s}Repository".safe_constantize
+              return "#{entity.to_s}Repository".constantize.new(collection, entity)
+            end
             Fish0::Repository.new(collection, entity)
           end
         end
