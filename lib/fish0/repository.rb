@@ -25,7 +25,7 @@ module Fish0
     end
 
     def all
-      fetch.map(&to_entity)
+      Fish0::Collection.new(fetch.map(&to_entity))
     end
 
     def projection(values)
