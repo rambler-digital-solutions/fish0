@@ -50,8 +50,8 @@ module Fish0
           end
 
           def repository
-            if "#{entity.to_s}Repository".safe_constantize
-              return "#{entity.to_s}Repository".constantize.new(collection, entity)
+            if "#{entity}Repository".safe_constantize
+              return "#{entity}Repository".constantize.new(collection, entity)
             end
             Fish0::Repository.new(collection, entity)
           end

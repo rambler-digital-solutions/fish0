@@ -21,6 +21,11 @@ module Fish0
     end
 
     def mongo_config
+      if File.file?(File.expand_path('../config/mongo.yml', __FILE__))
+        config = Rails.application.config_for(:mongo)
+        Configuration.mongo_hosts = config['hosts']
+        Configuration.mongo_params = config['params']
+      end
       @mongo_config || { hosts: Configuration.mongo_hosts, params: Configuration.mongo_params }
     end
   end

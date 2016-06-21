@@ -16,6 +16,13 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   s.required_ruby_version = '~> 2.0'
 
+  s.post_install_message = %(
+  WARNING if updating from version prior 0.0.6 you need to change
+          mongo configuration.
+          Configure mongo using config/initializers/fish0.rb
+          Read examples in README.md
+  )
+
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir['spec/**/*']
 

@@ -38,3 +38,6 @@ Style/BlockComments:
 
 Documentation:
   Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
