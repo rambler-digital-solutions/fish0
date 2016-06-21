@@ -1,11 +1,12 @@
 AllCops:
-  TargetRubyVersion: 2.2
+  TargetRubyVersion: 2.3
   Exclude:
     - 'bin/**/*'
     - 'db/**/*'
     - 'vendor/**/*'
     - 'tmp/**/*'
     - 'test/test_helper.rb'
+    - 'spec/dummy/**/*'
     - 'spec/spec_helper.rb'
     - 'spec/rails_helper.rb'
 
