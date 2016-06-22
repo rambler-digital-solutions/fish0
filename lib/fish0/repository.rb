@@ -76,8 +76,6 @@ module Fish0
       self
     end
 
-    protected
-
     def fetch
       scoped = find(conditions, sort: order)
       scoped = scoped.projection(@projection) if @projection
@@ -85,6 +83,8 @@ module Fish0
       scoped = scoped.limit(limit_quantity) if limit_quantity > 0
       scoped
     end
+
+    protected
 
     def to_entity
       -> (attrs) { entity_class.new(attrs) }
