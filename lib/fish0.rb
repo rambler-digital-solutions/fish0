@@ -17,7 +17,7 @@ module Fish0
   class << self
     def mongo_reader
       Mongo::Logger.logger = mongo_config['logger'] || Rails.logger
-      Mongo::Client.new(mongo_config[:hosts], mongo_config[:params])
+      @mongo_reader ||= Mongo::Client.new(mongo_config[:hosts], mongo_config[:params])
     end
 
     def mongo_config
