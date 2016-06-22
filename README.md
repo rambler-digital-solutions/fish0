@@ -14,20 +14,13 @@ gem 'fish0'
 
 ## Configuration
 
-```yml
-# config/mongo.yml
+```ruby
+# config/initializers/fish0.rb
 
-development:
-  hosts:
-    - 'localhost:27017'
-  params:
-    :database: project_development
-
-production:
-  hosts:
-    - 'db.project.tld:27017'
-  params:
-    :database: project_production
+Fish0::Configuration.configure do |config|
+  config.mongo_hosts = ['127.0.0.1:27017', '127.0.0.2:27017']
+  config.mongo_params = { database: 'project_db', read: { mode: :secondary } }
+end
 ```
 
 ## Models

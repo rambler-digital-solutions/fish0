@@ -10,14 +10,14 @@ module Fish0
 
     include Enumerable
 
-    delegate :find, to: :source
+    delegate :find, :aggregate, to: :source
     delegate :each, to: :all
 
     def initialize(collection, entity_class = nil)
       raise ArgumentError, 'you should provide collection name' unless collection
       @collection = collection
       @source = Fish0.mongo_reader[collection]
-      @conditions = {}
+      @conditions = default_conditions
       @order = {}
       @limit_quantity = 0
       @skip_quantity = 0
@@ -85,6 +85,10 @@ module Fish0
     end
 
     protected
+
+    def default_conditions
+      {}
+    end
 
     def to_entity
       -> (attrs) { entity_class.new(attrs) }
