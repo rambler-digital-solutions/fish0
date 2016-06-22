@@ -10,14 +10,14 @@ module Fish0
 
     include Enumerable
 
-    delegate :find, to: :source
+    delegate :find, :aggregate, to: :source
     delegate :each, to: :all
 
     def initialize(collection, entity_class = nil)
       raise ArgumentError, 'you should provide collection name' unless collection
       @collection = collection
       @source = Fish0.mongo_reader[collection]
-      @conditions = {}
+      @conditions = default_conditions
       @order = {}
       @limit_quantity = 0
       @skip_quantity = 0
@@ -76,14 +76,18 @@ module Fish0
       self
     end
 
-    protected
-
     def fetch
       scoped = find(conditions, sort: order)
       scoped = scoped.projection(@projection) if @projection
       scoped = scoped.skip(skip_quantity) if skip_quantity > 0
       scoped = scoped.limit(limit_quantity) if limit_quantity > 0
       scoped
+    end
+
+    protected
+
+    def default_conditions
+      {}
     end
 
     def to_entity
