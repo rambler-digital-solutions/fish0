@@ -84,6 +84,10 @@ module Fish0
       scoped
     end
 
+    def count
+      find(conditions).count
+    end
+
     protected
 
     def default_conditions
