@@ -10,7 +10,7 @@ module Fish0
 
     include Enumerable
 
-    delegate :find, :aggregate, to: :source
+    delegate :find, :aggregate, :distinct, to: :source
     delegate :each, to: :all
 
     def initialize(collection, entity_class = nil)
