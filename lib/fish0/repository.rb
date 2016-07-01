@@ -10,7 +10,7 @@ module Fish0
 
     include Enumerable
 
-    delegate :find, :aggregate, :distinct, to: :source
+    delegate :find, :aggregate, to: :source
     delegate :each, to: :all
 
     def initialize(collection, entity_class = nil)
@@ -31,6 +31,10 @@ module Fish0
     def projection(values)
       @projection = values
       self
+    end
+
+    def distinct(field)
+      @source.distinct field, @conditions
     end
 
     def first
