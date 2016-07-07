@@ -4,7 +4,7 @@ module Fish0
       extend ActiveSupport::Concern
 
       included do
-        include Virtus::Model
+        include Virtus.model
         attribute :type, String
 
         def type
