@@ -23,6 +23,10 @@ module Fish0
             include Concerns::Cacheable
           end
 
+          def skip_coercion
+            include Virtus.model(coerce: false)
+          end
+
           def method_missing(method_name, *arguments, &block)
             if repository.respond_to?(method_name)
               repository.send(method_name, *arguments, &block)
