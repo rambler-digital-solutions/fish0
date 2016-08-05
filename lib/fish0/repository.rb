@@ -10,7 +10,7 @@ module Fish0
 
     include Enumerable
 
-    delegate :find, :aggregate, to: :source
+    delegate :aggregate, to: :source
     delegate :each, to: :all
 
     def initialize(collection, entity_class = nil)
@@ -22,6 +22,10 @@ module Fish0
       @limit_quantity = 0
       @skip_quantity = 0
       @entity_class = entity_class || String(collection).singularize.camelize.constantize
+    end
+
+    def find(filter = nil, options = {})
+      @source.find filter.dup, options
     end
 
     def all
