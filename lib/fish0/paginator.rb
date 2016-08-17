@@ -6,7 +6,9 @@ module Fish0
     attr_reader :collection
 
     def initialize(collection, page_number: 1, per_page: 22, padding: 0)
-      @collection = collection || (raise ArgumentError)
+      raise ArgumentError,
+            'you can paginate only Fish0::Repository' unless collection.is_a?(Fish0::Repository)
+      @collection = collection
       @per = per_page
       @page = page_number
       @padding = padding
