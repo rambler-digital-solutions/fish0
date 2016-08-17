@@ -11,7 +11,7 @@ module Fish0
     include Enumerable
 
     delegate :aggregate, to: :source
-    delegate :each, to: :all
+    delegate :each, to: :to_collection
 
     def initialize(collection, entity_class = nil)
       raise ArgumentError, 'you should provide collection name' unless collection
@@ -32,12 +32,16 @@ module Fish0
       find_one(query) || raise(RecordNotFound, "can't find in #{collection} with #{conditions}")
     end
 
+    def to_collection
+      Fish0::Collection.new(fetch.map(&to_entity))
+    end
+
     def find(filter = nil, options = {})
       @source.find filter.dup, options
     end
 
     def all
-      Fish0::Collection.new(fetch.map(&to_entity))
+      self
     end
 
     def projection(values)
