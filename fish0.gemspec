@@ -26,14 +26,14 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir['spec/**/*']
 
-  s.add_runtime_dependency 'activesupport', '~> 4.2'
-  s.add_runtime_dependency 'activerecord', '~> 4.2'
+  s.add_runtime_dependency 'activesupport', '>= 4.2'
+  s.add_runtime_dependency 'activerecord', '>= 4.2'
   s.add_runtime_dependency 'mongo', '~> 2.2'
   s.add_runtime_dependency 'virtus', '~> 1.0'
 
-  s.add_development_dependency 'rubocop', '~> 0.35'
-  s.add_development_dependency 'rspec', '~> 3.4'
-  s.add_development_dependency 'rspec-rails', '~> 3.4'
-  s.add_development_dependency 'capybara', '~> 2.7'
-  s.add_development_dependency 'factory_girl_rails', '~> 4.7'
+  s.add_development_dependency 'rubocop', '>= 0.35'
+  s.add_development_dependency 'rspec', '>= 3.4'
+  s.add_development_dependency 'rspec-rails', '>= 3.4'
+  s.add_development_dependency 'capybara', '>= 2.7'
+  s.add_development_dependency 'factory_girl_rails', '>= 4.7'
 end
