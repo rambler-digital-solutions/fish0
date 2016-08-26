@@ -24,6 +24,14 @@ module Fish0
       @entity_class = entity_class || String(collection).singularize.camelize.constantize
     end
 
+    def find_one(query)
+      where(query).first
+    end
+
+    def find_one!(query)
+      find_one(query) || raise(RecordNotFound, "can't find in #{collection} with #{conditions}")
+    end
+
     def find(filter = nil, options = {})
       @source.find filter.dup, options
     end
@@ -78,8 +86,8 @@ module Fish0
     def fetch
       scoped = find(conditions, sort: order)
       scoped = scoped.projection(@projection) if @projection
-      scoped = scoped.skip(skip_quantity) if skip_quantity > 0
-      scoped = scoped.limit(limit_quantity) if limit_quantity > 0
+      scoped = scoped.skip(skip_quantity) if skip_quantity.positive?
+      scoped = scoped.limit(limit_quantity) if limit_quantity.positive?
       scoped
     end
 

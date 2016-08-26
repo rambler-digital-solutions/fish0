@@ -3,5 +3,6 @@ module Fish0
     extend ActiveModel::Naming
     include Fish0::Concerns::Base
     include Fish0::Concerns::ViewModel
+    include Fish0::Concerns::Equalable
   end
 end
