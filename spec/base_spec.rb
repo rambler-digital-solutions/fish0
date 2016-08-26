@@ -1,18 +1,19 @@
 require 'spec_helper'
 
 RSpec.describe 'Fish0::Base' do
-  let(:dummy) { create(:article) }
-  let(:yolo) { create(:article) }
+  let!(:headline) { FFaker::Lorem.sentence }
+  let!(:article) { create(:article, headline: headline) }
+  let!(:other_article) { create(:article) }
 
   describe '.find_one' do
     subject { Article.find_one(query) }
 
-    context 'search is successful' do
-      let(:query) { { headline: dummy.headline } }
-      it { is_expected.to eq(dummy) }
+    context 'when article with such headline exists in the database' do
+      let(:query) { { headline: headline } }
+      it { is_expected.to eq(article) }
     end
 
-    context 'nothing is found' do
+    context 'when there is no such article in database' do
       let(:query) { { headline: 'кирриллица' } }
       it { is_expected.to be_nil }
     end
@@ -21,12 +22,12 @@ RSpec.describe 'Fish0::Base' do
   describe '.find_one!' do
     subject { Article.find_one!(query) }
 
-    context 'search is successful' do
-      let(:query) { { headline: dummy.headline } }
-      it { is_expected.to eq(dummy) }
+    context 'when article with such headline exists in the database' do
+      let(:query) { { headline: headline } }
+      it { is_expected.to eq(article) }
     end
 
-    context 'nothing is found' do
+    context 'when there is no such article in database' do
       let(:query) { { headline: 'кирриллица' } }
       it 'raises exception' do
         expect { subject }.to raise_error(Fish0::RecordNotFound)
