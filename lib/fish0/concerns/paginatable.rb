@@ -13,7 +13,7 @@ module Fish0
         end
 
         def paginate(collection)
-          Fish0::Paginator.new(collection, page_number: page, per_page: per_page).all
+          Fish0::Paginator.new(collection, page_number: page, per_page: per_page).to_collection
         end
 
         def per_page

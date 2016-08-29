@@ -1,7 +1,7 @@
 module Fish0
   class Paginator
     include Enumerable
-    delegate :each, :all, :skip, :limit, :padding, :fetch, to: :collection
+    delegate :each, :to_collection, :skip, :limit, :padding, :fetch, to: :collection
 
     attr_reader :collection
 
