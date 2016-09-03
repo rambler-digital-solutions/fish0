@@ -1,6 +1,7 @@
 # Fish0
 
 [![Build Status](https://api.travis-ci.org/rambler-digital-solutions/fish0.svg)](https://api.travis-ci.org/rambler-digital-solutions/fish0)
+[![Code Climate](https://codeclimate.com/github/rambler-digital-solutions/fish0/badges/gpa.svg)](https://codeclimate.com/github/rambler-digital-solutions/fish0)
 [![Gem Version](https://badge.fury.io/rb/fish0.svg)](https://badge.fury.io/rb/fish0)
 
 > The fish doesn't think because the fish knows everything.
