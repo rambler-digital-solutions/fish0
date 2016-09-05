@@ -11,7 +11,7 @@ module Fish0
     protected
 
     def objects_key
-      Digest::MD5.hexdigest(map(&:slug).join)
+      Digest::MD5.hexdigest(map(&:primary_key_value).join)
     end
 
     def time_to_string(timestamp)
