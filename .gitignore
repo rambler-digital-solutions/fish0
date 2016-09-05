@@ -3,3 +3,4 @@ log/*.log
 pkg/
 *.gem
 Gemfile.lock
+spec/dummy/log/*.log
