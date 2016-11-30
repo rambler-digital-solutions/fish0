@@ -27,6 +27,11 @@ module Fish0
             include Virtus.model(coerce: false)
           end
 
+          def scope(name, body)
+            @scopes ||= []
+            @scopes << [name, body]
+          end
+
           def method_missing(method_name, *arguments, &block)
             if repository.respond_to?(method_name)
               repository.send(method_name, *arguments, &block)
@@ -54,10 +59,14 @@ module Fish0
           end
 
           def repository
-            if "#{entity}Repository".safe_constantize
-              return "#{entity}Repository".constantize.new(collection, entity)
-            end
-            Fish0::Repository.new(collection, entity)
+            rep = repository_class.new(collection, entity)
+            @scopes.each { |s| rep.scope(*s) }
+            rep
+          end
+
+          def repository_class
+            return "#{entity}Repository".constantize if "#{entity}Repository".safe_constantize
+            Fish0::Repository
           end
         end
       end
