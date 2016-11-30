@@ -33,19 +33,15 @@ module Fish0
           end
 
           def method_missing(method_name, *arguments, &block)
-            rep = repository
-            @scopes.each { |s| rep.scope(*s) }
-            if rep.respond_to?(method_name)
-              rep.send(method_name, *arguments, &block)
+            if repository.respond_to?(method_name)
+              repository.send(method_name, *arguments, &block)
             else
               super
             end
           end
 
           def respond_to_missing?(method_name, include_private = false)
-            rep = repository
-            @scopes.each { |s| rep.scope(*s) }
-            rep.respond_to?(method_name) || super
+            repository.respond_to?(method_name) || super
           end
 
           protected
@@ -63,10 +59,14 @@ module Fish0
           end
 
           def repository
-            if "#{entity}Repository".safe_constantize
-              return "#{entity}Repository".constantize.new(collection, entity)
-            end
-            Fish0::Repository.new(collection, entity)
+            rep = repository_class.new(collection, entity)
+            @scopes.each { |s| rep.scope(*s) }
+            rep
+          end
+
+          def repository_class
+            return "#{entity}Repository".constantize if "#{entity}Repository".safe_constantize
+            Fish0::Repository
           end
         end
       end
