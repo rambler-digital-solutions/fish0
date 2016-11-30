@@ -87,6 +87,19 @@ module Fish0
       self
     end
 
+    def scope(name, body)
+      return if respond_to?(name)
+
+      unless body.respond_to?(:call)
+        raise ArgumentError, 'The scope body needs to be callable.'
+      end
+
+      define_singleton_method(name) do |*args|
+        instance_exec(*args, &body)
+        self
+      end
+    end
+
     def fetch
       scoped = find(conditions, sort: order)
       scoped = scoped.projection(@projection) if @projection

@@ -27,16 +27,25 @@ module Fish0
             include Virtus.model(coerce: false)
           end
 
+          def scope(name, body)
+            @scopes ||= []
+            @scopes << [name, body]
+          end
+
           def method_missing(method_name, *arguments, &block)
-            if repository.respond_to?(method_name)
-              repository.send(method_name, *arguments, &block)
+            rep = repository
+            @scopes.each { |s| rep.scope(*s) }
+            if rep.respond_to?(method_name)
+              rep.send(method_name, *arguments, &block)
             else
               super
             end
           end
 
           def respond_to_missing?(method_name, include_private = false)
-            repository.respond_to?(method_name) || super
+            rep = repository
+            @scopes.each { |s| rep.scope(*s) }
+            rep.respond_to?(method_name) || super
           end
 
           protected
