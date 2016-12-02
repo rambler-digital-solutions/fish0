@@ -1,3 +1,8 @@
+## Fish0 0.0.18 (December 02, 2016) ##
+
+* Add `default_scope` method to `Fish0::Base` concern
+* Fix scopes issue
+
 ## Fish0 0.0.17 (November 30, 2016) ##
 
 * Add `scope` method to `Fish0::Base` concern and to `Fish0::Repository` instance.

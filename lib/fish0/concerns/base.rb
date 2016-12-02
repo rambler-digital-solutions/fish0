@@ -28,9 +28,18 @@ module Fish0
           end
 
           def scope(name, body)
-            @scopes ||= []
-            @scopes << [name, body]
+            scopes << [name, body]
           end
+
+          def scopes
+            @scopes ||= []
+          end
+
+          # rubocop:disable Style/TrivialAccessors
+          def default_scope(body)
+            @default_scope = body
+          end
+          # rubocop:enable Style/TrivialAccessors
 
           def method_missing(method_name, *arguments, &block)
             if repository.respond_to?(method_name)
@@ -60,7 +69,8 @@ module Fish0
 
           def repository
             rep = repository_class.new(collection, entity)
-            @scopes.each { |s| rep.scope(*s) }
+            rep.instance_exec(&@default_scope) if @default_scope
+            scopes.each { |s| rep.scope(*s) }
             rep
           end
 
