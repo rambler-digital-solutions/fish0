@@ -23,9 +23,9 @@ module Fish0
             include Concerns::Cacheable
           end
 
-          def skip_coercion
-            include Virtus.model(coerce: false)
-          end
+          # def skip_coercion
+          #   include Virtus.model(coerce: false)
+          # end
 
           def scope(name, body)
             @scopes ||= []

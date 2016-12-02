@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'activesupport', '>= 4.2'
   s.add_runtime_dependency 'activerecord', '>= 4.2'
   s.add_runtime_dependency 'mongo', '~> 2.2'
-  s.add_runtime_dependency 'virtus', '~> 1.0'
+  s.add_runtime_dependency 'dry-struct', '~> 0.1.1'
 
   s.add_development_dependency 'rubocop', '>= 0.35'
   s.add_development_dependency 'rspec', '>= 3.4'
