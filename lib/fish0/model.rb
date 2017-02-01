@@ -4,5 +4,7 @@ module Fish0
     include Fish0::Concerns::Base
     include Fish0::Concerns::ViewModel
     include Fish0::Concerns::Equalable
+
+    skip_coercion
   end
 end
