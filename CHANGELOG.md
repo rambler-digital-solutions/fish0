@@ -1,3 +1,9 @@
+## Fish0 0.1.0 (February, 01, 2017) ##
+
+* Rename `skip_coercion` method to `disable_coercion` in `Fish0::Base` concern
+* Add `enable_coercion` method to `Fish0::Base` concern
+* Skip coercion in `Fish0::Model` by default
+
 ## Fish0 0.0.18 (December 02, 2016) ##
 
 * Add `default_scope` method to `Fish0::Base` concern

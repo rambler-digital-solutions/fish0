@@ -23,8 +23,13 @@ module Fish0
             include Concerns::Cacheable
           end
 
-          def skip_coercion
+          def disable_coercion
             include Virtus.model(coerce: false)
+          end
+          alias_method :skip_coercion, :disable_coercion # DEPRECATED
+
+          def enable_coercion
+            include Virtus.model(coerce: true)
           end
 
           def scope(name, body)
