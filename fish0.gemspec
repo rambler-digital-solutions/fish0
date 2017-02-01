@@ -17,10 +17,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '~> 2.0'
 
   s.post_install_message = %(
-  WARNING if updating from version prior 0.0.6 you need to change
-          mongo configuration.
-          Configure mongo using config/initializers/fish0.rb
-          Read examples in README.md
+  WARNING starting from 0.1.0 coercion is disabled for Fish0::Model by default
   )
 
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
