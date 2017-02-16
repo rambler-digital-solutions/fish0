@@ -4,7 +4,6 @@ development:
   params:
     :database: fish0_development
 
-
 test:
   hosts:
     - 'localhost:27017'
