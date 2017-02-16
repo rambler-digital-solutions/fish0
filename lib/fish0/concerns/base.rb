@@ -73,7 +73,7 @@ module Fish0
           end
 
           def repository
-            rep = repository_class.new(collection, entity)
+            rep = repository_class.new(collection: collection, entity_class: entity)
             rep.instance_exec(&@default_scope) if @default_scope
             scopes.each { |s| rep.scope(*s) }
             rep

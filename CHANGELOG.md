@@ -1,3 +1,12 @@
+## Fish0 0.1.2 (February, 16, 2017) ##
+
+* `Fish0::Repository` now initializes with keyword arguments, not positional!
+* Added `source` argument to `Fish0::Repository` to allow use different sources
+
+## Fish0 0.1.1 (February, 16, 2017) ##
+
+* CRASHES! DO NOT USE!
+
 ## Fish0 0.1.0 (February, 01, 2017) ##
 
 * Rename `skip_coercion` method to `disable_coercion` in `Fish0::Base` concern
