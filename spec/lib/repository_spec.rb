@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 RSpec.describe Fish0::Repository do
-  let(:repository) { Fish0::Repository.new('articles') }
-  let(:scoped_repository) { Fish0::Repository.new('articles') }
+  let(:repository) { Fish0::Repository.new(collection: 'articles') }
+  let(:scoped_repository) { Fish0::Repository.new(collection: 'articles') }
 
   describe '#scope' do
     before do
