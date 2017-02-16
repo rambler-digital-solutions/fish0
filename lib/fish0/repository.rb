@@ -13,7 +13,7 @@ module Fish0
     delegate :aggregate, to: :source
     delegate :each, to: :to_collection
 
-    def initialize(collection, entity_class = nil, source: nil)
+    def initialize(collection:, entity_class: nil, source: nil)
       raise ArgumentError, 'you should provide collection name' unless collection
       @collection = collection
       @source = source ? source[collection] : Fish0.mongo_reader[collection]
