@@ -1,11 +1,7 @@
 development:
-  hosts:
-    - 'localhost:27017'
-  params:
-    :database: fish0_development
+  mongo_uri:
+    - 'mongodb://localhost:27017/fish0_development'
 
 test:
-  hosts:
-    - 'localhost:27017'
-  params:
-    :database: fish0_test
+  mongo_uri:
+    - 'mongodb://localhost:27017/fish0_development'

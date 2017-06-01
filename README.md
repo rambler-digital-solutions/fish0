@@ -25,19 +25,6 @@ Fish0::Configuration.configure do |config|
   config.mongo_uri = 'mongodb://user:password@host_1:27017,replica_host_2:27017/project_db?auth_source=admin'
   config.mongo_params = { read: { mode: :secondary } }
 end
-  
-Or if you are not using full mongo uri:
-(when config.mongo_uri is present Fish will ignore config.mongo_hosts):
-
-Fish0::Configuration.configure do |config|
- config.mongo_hosts = ['localhost:27017']
- config.mongo_params = { database: 'your_data_development', read: { mode: :secondary } }
-end
-
-Fish0::Configuration.configure do |config|
-  config.mongo_hosts = ['127.0.0.1:27017', '127.0.0.2:27017']
-  config.mongo_params = { database: 'project_db', read: { mode: :secondary } }
-end
 ```
 
 ## Models
