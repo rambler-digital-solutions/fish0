@@ -6,10 +6,9 @@ module Fish0
       included do
         def cache_key(*timestamp_names)
           if timestamp_names.any?
-            timestamp = max_updated_column_timestamp(timestamp_names)
-            "#{self.class.to_s.tableize}/#{primary_key_value}-#{timestamp.utc.to_s(:nsec)}"
-          elsif timestamp = max_updated_column_timestamp
-            "#{self.class.to_s.tableize}/#{primary_key_value}-#{timestamp.utc.to_s(:nsec)}"
+            cache_key_string(max_updated_column_timestamp(timestamp_names))
+          elsif (timestamp = max_updated_column_timestamp)
+            cache_key_string(timestamp)
           else
             "#{self.class.to_s.tableize}/#{primary_key_value}"
           end
@@ -27,6 +26,10 @@ module Fish0
             .compact
             .map(&:to_time)
             .max
+        end
+
+        def cache_key_string(timestamp)
+          "#{self.class.to_s.tableize}/#{primary_key_value}-#{timestamp.utc.to_s(:nsec)}"
         end
       end
     end
