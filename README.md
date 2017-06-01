@@ -22,8 +22,8 @@ gem 'fish0'
 # config/initializers/fish0.rb
 
 Fish0::Configuration.configure do |config|
-  config.mongo_hosts = ['127.0.0.1:27017', '127.0.0.2:27017']
-  config.mongo_params = { database: 'project_db', read: { mode: :secondary } }
+  config.mongo_uri = 'mongodb://user:password@host_1:27017,replica_host_2:27017/project_db?auth_source=admin'
+  config.mongo_params = { read: { mode: :secondary } }
 end
 ```
 
