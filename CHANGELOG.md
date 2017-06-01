@@ -1,3 +1,7 @@
+## Fish0 0.2.0 (June, 01, 2017) ##
+
+* `config.mongo_hosts` -> `config.mongo_uri`. Now it accepts both Mongo URI as string and Hosts as array.
+
 ## Fish0 0.1.2 (February, 16, 2017) ##
 
 * `Fish0::Repository` now initializes with keyword arguments, not positional!
