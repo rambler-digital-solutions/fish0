@@ -18,16 +18,28 @@ module Fish0
   class << self
     def mongo_reader
       Mongo::Logger.logger = mongo_config['logger'] || Rails.logger
-      @mongo_reader ||= Mongo::Client.new(mongo_config[:hosts], mongo_config[:params])
+      @mongo_reader ||= begin
+        str = if mongo_config[:use_uri_format] == true
+                mongo_config[:mongo_uri]
+              else
+                mongo_config[:hosts]
+              end
+        Mongo::Client.new(str, mongo_config[:params])
+      end
     end
 
     def mongo_config
       if File.file?(File.expand_path('../config/mongo.yml', __FILE__))
         config = Rails.application.config_for(:mongo)
+        Configuration.use_uri_format = config['use_uri_format']
+        Configuration.mongo_uri = config['mongo_uri']
         Configuration.mongo_hosts = config['hosts']
         Configuration.mongo_params = config['params']
       end
-      @mongo_config || { hosts: Configuration.mongo_hosts, params: Configuration.mongo_params }
+      @mongo_config || { hosts: Configuration.mongo_hosts,
+                         params: Configuration.mongo_params,
+                         use_uri_format: Configuration.use_uri_format,
+                         mongo_uri: Configuration.mongo_uri }
     end
   end
 end
