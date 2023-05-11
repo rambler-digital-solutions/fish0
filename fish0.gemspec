@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.description = 'Plugin for read-only content websites with MongoDB storage.
                    Works perfect with Rambler&Co CQRS projects'
   s.license     = 'MIT'
-  s.required_ruby_version = '~> 2.0'
+  s.required_ruby_version = '>= 2.0'
 
   s.post_install_message = %(
   WARNING starting from 0.1.0 coercion is disabled for Fish0::Model by default

@@ -1,3 +1,7 @@
+## Fish0 0.2.1 (May, 11, 2023) ##
+
+* Update required Ruby version from `~>2.0` to `>=2.0`.
+
 ## Fish0 0.2.0 (June, 01, 2017) ##
 
 * `config.mongo_hosts` -> `config.mongo_uri`. Now it accepts both Mongo URI as string and Hosts as array.
