@@ -1,3 +1,7 @@
+## Fish0 0.2.2 (May, 06, 2024) ##
+
+* Added `hint` argument to `Fish0::Repository` in order to force usage of specific index(-es).
+
 ## Fish0 0.2.1 (May, 11, 2023) ##
 
 * Update required Ruby version from `~>2.0` to `>=2.0`.

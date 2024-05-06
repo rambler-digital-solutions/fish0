@@ -87,6 +87,11 @@ module Fish0
       self
     end
 
+    def hint(value)
+      @hint = value
+      self
+    end
+
     def scope(name, body)
       return if respond_to?(name)
 
@@ -105,6 +110,7 @@ module Fish0
       scoped = scoped.projection(@projection) if @projection
       scoped = scoped.skip(skip_quantity) if skip_quantity.positive?
       scoped = scoped.limit(limit_quantity) if limit_quantity.positive?
+      scoped = scoped.hint(@hint) if @hint
       scoped
     end
 
