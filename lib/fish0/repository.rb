@@ -6,6 +6,7 @@ module Fish0
                 :order,
                 :skip_quantity,
                 :limit_quantity,
+                :hint_index,
                 :entity_class
 
     include Enumerable
@@ -21,6 +22,7 @@ module Fish0
       @order = {}
       @limit_quantity = 0
       @skip_quantity = 0
+      @hint_index = nil
       @entity_class = entity_class || String(collection).singularize.camelize.constantize
     end
 
@@ -87,6 +89,11 @@ module Fish0
       self
     end
 
+    def hint(value)
+      @hint_index = value
+      self
+    end
+
     def scope(name, body)
       return if respond_to?(name)
 
@@ -105,6 +112,7 @@ module Fish0
       scoped = scoped.projection(@projection) if @projection
       scoped = scoped.skip(skip_quantity) if skip_quantity.positive?
       scoped = scoped.limit(limit_quantity) if limit_quantity.positive?
+      scoped = scoped.hint(hint_index) if hint_index.present?
       scoped
     end
 
